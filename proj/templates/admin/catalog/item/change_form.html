@@ -1,0 +1,89 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+
+{{ block.super }}
+
+    <script src="/media/js/jquery-1.7.min.js"></script>
+
+    <script type="text/javascript">
+        
+        $.extend($.expr[":"], {
+        containsIgnoreCase : function(elem, i, match, array) {
+            return (elem.textContent || elem.innerText || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+        }});  
+        
+    </script>
+    
+
+{% endblock %}
+
+
+{% block after_field_sets %}
+
+    {{ block.super }}
+  
+
+    <script type="text/javascript">
+        <!-- Function selects first option from select element "id_brand" containing text which is equal to first word from input with id "id_name" -->
+        <!-- Occurs on onChange event for input with id="id_name" -->
+        $('#id_name').change(function () {
+                var str=$(this).attr("value");
+                if(str=="") return;
+                str=str.trim();
+                str=str.replace(/ +(?= )/g,'');
+                var str_arr=str.split(" ");
+                $("#id_brand option:containsIgnoreCase('"+str_arr[0]+"')").attr("selected","selected");
+                
+        })
+
+
+    </script>
+    
+    
+<script type="text/javascript" src="/media/jquerui/js/jquery-ui-1.8.17.custom.min.js" ></script>
+<script type="text/javascript" src="/media/js/ui_widgets.js" ></script>
+<link rel="stylesheet" href="/media/jquerui/css/cupertino/jquery-ui-1.8.17.custom.css" type="text/css" media="screen, projection"/>
+	<style>
+	.ui-button-icon-only .ui-button-text { padding: 0; margin: 0; margin-top:2px; margin-bottom:-2px;} 
+	.ui-autocomplete-input { margin: 0; margin-bottom: 5px; width:200px; }
+    .ui-menu-item { list-style-type: none;}
+   
+    </style>
+
+
+
+
+<script type="text/javascript">
+    
+$(function() { 
+    		$( "#id_category" ).combobox();
+	}
+);       
+
+     
+  
+</script>
+
+{% endblock %}
+
+
+
+
+<!--
+    Page contains code like this:
+        
+        <label for="id_name" class="required">Name:</label>
+        <input id="id_name" type="text" class="vTextField" name="name" maxlength="255" />
+
+        <label for="id_brand" class="required">Brand:</label>
+        <select name="brand" id="id_brand">
+            <option value="" selected="selected">---------</option>
+            <option value="1">Marmot</option>
+            <option value="2">Petzl</option>
+            <option value="3">Black Diamond</option>
+        </select>
+    
+-->
+                        
+                    

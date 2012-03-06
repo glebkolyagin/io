@@ -1,0 +1,40 @@
+
+/* *************** Carousel *************** */
+
+/* each image is 32x54, 18px between each img, total width 50px/img */
+
+.javascript_on #carousel_container {
+	padding:8px 0 0 8px;
+	float:left;
+	width:240px; /* needed for Chrome, 300 + 20 + 20 */
+}
+
+.javascript_on #carousel_images {
+	width:200px; /* 50 * number of visible icons */
+	overflow:hidden;
+	float:left;
+	position:relative;
+}
+
+.javascript_on #carousel_slider {
+	white-space:nowrap;
+	position:relative;
+}
+#carousel_slider img {
+	padding:0 9px;
+}
+
+.javascript_on #carousel_left_arrow {
+	background:transparent url(../images/site/common/slideshow_arrows.png) no-repeat -60px 0px;
+	width:20px;
+	height:23px;
+	float:left;
+	margin-top:4px;
+}
+.javascript_on #carousel_right_arrow {
+	background:transparent url(../images/site/common/slideshow_arrows.png) no-repeat -30px 0px;
+	width:20px;
+	height:23px;
+	float:left;
+	margin-top:4px;
+}

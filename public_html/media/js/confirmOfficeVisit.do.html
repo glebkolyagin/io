@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- this allows us to get this attribute later from the pageContext -->
+<html lang="en"><head>
+	<title>Confirmation</title>
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_styles.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_slideshow.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_tabpanel.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_minicarousel.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/text_sizer.css" type="text/css">
+
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_box_with_rounded_corners.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_navigation.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_design01.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_footer_with_dark_container.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/vc.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/site_dmv_app.css" type="text/css">
+	<link rel="stylesheet" href="confirmOfficeVisit.do_files/app_styles.css" type="text/css">
+	
+	<!--[if IE 6]>
+	<link rel="stylesheet" href="css/site_ie6.css" type="text/css" />
+	<![endif]-->
+	
+	<style type="text/css">
+	<!--
+
+	.ng_input_button_table td {
+	  padding-top:0;
+	}
+	
+	div#app_content form fieldset table.ng_input_button_table {
+    margin: -4px 0px 0px 0px;
+	}
+	-->
+	</style>
+	
+	<script type="text/javascript" src="confirmOfficeVisit.do_files/site_scripts.js"></script>
+	<script type="text/javascript" src="confirmOfficeVisit.do_files/site_slideshow.js"></script>
+	<script type="text/javascript" src="confirmOfficeVisit.do_files/site_homeslider.js"></script>
+	<script type="text/javascript" src="confirmOfficeVisit.do_files/site_tabpanel.js"></script>
+	<script type="text/javascript" src="confirmOfficeVisit.do_files/site_minicarousel.js"></script>
+ 	<script type="text/javascript" src="confirmOfficeVisit.do_files/site_text_size.js"></script>
+
+
+
+<script language="javascript" type="text/javascript" src="confirmOfficeVisit.do_files/map.js"></script>
+<script language="javascript" type="text/javascript" src="confirmOfficeVisit.do_files/JsFunctions.js"></script>
+<script language="javascript" type="text/javascript">
+	<!--
+	
+	function MM_goToURL() {// v2.0
+	  for (var i=0; i< (MM_goToURL.arguments.length - 1); i+=2)// with arg pairs
+	    eval(MM_goToURL.arguments[i]+".location='"+MM_goToURL.arguments[i+1]+"'");
+	  document.MM_returnValue = false;
+	}
+	
+	//-->
+	</script>
+
+<script type="text/javascript" language="JavaScript">
+	      window.setTimeout("parent.location='../../portal/home/timeout.htm';", 605000);
+	      addLoadEvent(reload);
+	</script>
+</head>
+
+<body class="javascript_on">
+
+
+<div id="header" style="background:transparent url(/imageserver/dmv/images/site/design01/header_bg.png) no-repeat top right;">
+
+
+	
+	
+		<!-- ################################### English Header - Begin ############################################# -->
+	
+    <div id="skip_to_content" style="visibility:visible;"><a href="#main_content">Skip to Main Content</a></div>
+
+    <div class="head_cagov_logo"><a href="http://www.ca.gov/"><img style="border: 0px none;" src="confirmOfficeVisit.do_files/header_ca_gov.png" alt="CA.gov"></a></div>
+   <h1 class="head_organization_banner"><a href="https://www.dmv.ca.gov/portal/home/dmv.htm?lang=en"><img style="border: 0px none;" src="confirmOfficeVisit.do_files/header_organization.png" alt="California Department of Motor Vehicles"></a>
+</h1>
+
+    <div id="head_links">&nbsp; <a style="color: rgb(255, 255, 255); text-decoration: underline;" href="https://www.dmv.ca.gov/shoppingcart/shoppingCartApplication.do">View shopping cart</a>
+ &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="https://www.dmv.ca.gov/contacts/contacts.htm">Contact Us</a>|<a href="https://www.dmv.ca.gov/portal/home/dmv.htm?lang=es">Español</a>
+
+    <div style="position: absolute; left: 340px; top: -3px;"><a href="https://www.dmv.ca.gov/dl/disabled_info.htm"><img style="border: 0px none;" src="confirmOfficeVisit.do_files/disabled_20x20.gif" alt="Disability Services" height="20" width="20"></a></div>
+    </div>
+	
+		<h1><a href="#"><img style="border: 0px none;" src="confirmOfficeVisit.do_files/clear.gif" alt="CA.GOV State of California"></a></h1>
+
+
+<div id="head_search">
+		<form id="ca_form" class="hidden" method="get" action="http://www.ca.gov/CaSearch/Default.aspx"> <!-- the form action will be changed using javascript -->
+			<div class="textfield_container">
+				<label for="search_ca_textfield" accesskey="s" class="hidden">Search: </label>
+				<input name="search" id="search_ca_textfield" size="40" value="Search" onfocus="if(this.value=='Search')this.value=''" onblur="if(this.value=='')this.value='Search'" type="text">
+				<input name="type" value="All" type="hidden">
+				<input name="cof" value="FORID:10" type="hidden"> <!-- this value will be set using javascript -->
+			</div>
+			<div class="submit_container">
+				<input alt="Search" title="Search" id="submitbuttonca" name="submit" src="confirmOfficeVisit.do_files/header_search_submitbutton.png" type="image">
+			</div>
+
+		</form>	
+
+		<form id="local_form" method="get" action="http://www.dmv.ca.gov/portal/home/dmvsearch.htm"> <!-- the form action will be changed using javascript -->
+			<div class="textfield_container">
+				<label for="search_local_textfield" accesskey="s" class="hidden">Search this site: </label>
+				<input name="q" id="search_local_textfield" size="40" value="Search" onfocus="if(this.value=='Search')this.value=''" onblur="if(this.value=='')this.value='Search'" type="text">
+				<input name="type" value="All" type="hidden">
+				<input name="cx" value="001779225245372747843:uh-hxdgtdx8" type="hidden">
+				<input name="cof" value="FORID:9;NB:1" type="hidden"> <!-- this value will be set using javascript -->
+			</div>
+			<div class="submit_container">
+				<input alt="Search" title="Search" id="submitbuttonlocal" name="submit" src="confirmOfficeVisit.do_files/header_search_submitbutton.png" type="image">
+
+			</div>
+		</form>
+
+		<form id="control" action="http://www.ca.gov/CaSearch/Default.aspx">
+			<div id="radio_container">
+
+				<input name="which" id="head_srch_local" value="local" class="radiobutton" checked="checked" type="radio">
+				<label style="background-position: 12px -37px;" for="head_srch_local" accesskey="l" id="head_srch_l_lbl">This Site</label>
+				<input name="which" id="head_srch_ca" value="ca" class="radiobutton" type="radio">
+				<label style="background-position: 12px 3px;" for="head_srch_ca" accesskey="c" id="head_srch_c_lbl">California</label>
+			</div>
+		</form>
+</div>
+
+<!--  ################################################# English Header - End ############################################# -->
+	
+
+
+	<div id="navigation">
+		<ul id="nav_list">
+			<p style="margin: 25px 0px 0px 575px; color: #FFFFFF; float: left;">
+			
+				You have 
+				<span name="scitemcount" id="scitemcount">
+					0 
+				</span> 
+				
+				
+					items in your shopping cart
+				
+			
+		</p></ul>
+	</div>
+</div>  <!-- closes header div -->
+
+
+  
+
+<div id="page_container">
+<div id="main_content">
+			
+	<div class="cleaner">&nbsp;</div>
+
+	<div class="add_padding">
+		<div class="content_left_column">
+		
+		
+
+		
+<!-- App Header -->
+<div id="app_header">
+<h1>Appointment System</h1></div>
+<!-- Body -->
+<div id="app_content">
+
+
+
+<noscript>
+<p class="warning">Javascript is off on your browser. This application requires Javascript to be enabled.</p>
+</noscript>
+
+<form id="apptForm" method="post" action="/wasapp/foa/printOfficeVisitConfirmation.do?print=true">
+
+	<input name="confirmationId" value="6240210121140" type="hidden">
+	<input name="officeName" value="WALNUT CREEK" type="hidden">
+	<input name="officeAddress" value="1910 N BROADWAY" type="hidden">
+	<input name="officeCity" value="WALNUT CREEK" type="hidden">
+	<input name="apptDateString" value="021012" type="hidden">
+	<input name="apptTimeString" value="1140" type="hidden">
+	<input name="taskDL" value="true" type="hidden">
+	<input name="taskVR" value="false" type="hidden">
+	<input name="firstName" value="GLEB" type="hidden">
+	<input name="lastName" value="KOLYAGIN" type="hidden">
+	<input name="secondCustomerFirstName" value="" type="hidden">
+	<input name="secondCustomerLastName" value="" type="hidden">
+	<input name="thirdCustomerFirstName" value="" type="hidden">
+	<input name="thirdCustomerLastName" value="" type="hidden">
+	<input name="telArea" value="773" type="hidden">
+	<input name="telPrefix" value="916" type="hidden">
+	<input name="telSuffix" value="9361" type="hidden">
+	<input name="stationComments" value="" type="hidden">
+
+</form>
+
+<p>Thank you for using our appointment system.</p>
+<p style="text-align: center;"><strong>Your appointment has been<br>
+<span class="alert">Confirmed</span><br>
+Your confirmation number is <span class="alert">6240210121140</span></strong></p>
+<p>DMV field offices accept payment by check, money order or cash. 
+Certain offices also accept ATM/Debit cards for payment of fees. Credit 
+cards are <strong>NOT</strong> accepted in DMV field offices.</p>
+<p>
+	Please print a
+	<a href="javascript:document.getElementById('apptForm').submit();">
+	Printer Friendly Version</a>
+	of this page and bring it with you to your appointment.
+	When done, click the Finished button or close the browser to protect your personal information.
+ </p>
+<p>To cancel or view an appointment, go to <a href="javascript:parent.location='clear.do?goTo=viewCancel';">View or Cancel an existing appointment</a>.</p>
+
+
+
+
+<script type="text/javascript" language="JavaScript">
+			if (navigator.appName == "Netscape") {
+				document.write("<p><b>Note: If you are using Netscape Navigator or Netscape Communicator, you may not be able to print the confirmation page.</b></p>");
+			}	
+		</script><p><b>Note: If you are using Netscape Navigator or Netscape Communicator, you may not be able to print the confirmation page.</b></p>
+
+<p><strong><em>Help us improve our online services. Please take a moment to complete a brief <a href="http://apps.dmv.ca.gov/pubs/survey/surveyappt.htm" target="_new">Survey.</a></em></strong></p>
+<table>
+	<tbody><tr>
+		<td colspan="2">Appointment Details:</td>
+	</tr>
+	<tr>
+		<td style="" valign="top" width="120"><strong>Office:</strong></td>
+		<td>WALNUT CREEK</td>
+	</tr>
+	<tr>
+		<td valign="top" width="120"><strong>Location:</strong></td>
+		<td>1910 N BROADWAY<br>
+		WALNUT CREEK,
+		CA<br>
+
+		   <a href="javascript:openYahooMap('1910%20N%20BROADWAY',%20'WALNUT%20CREEK')">See Street Map</a> </td>
+	</tr>
+	<tr>
+		<td valign="top" width="120"><strong>Date:</strong></td>
+		<td>Friday, February 10, 2012</td>
+	</tr>
+	<tr>
+		<td valign="top" width="120"><strong>Time:</strong></td>
+		<td>11:40 AM</td>
+	</tr>
+	<tr>
+		<td valign="top" width="120"><strong>Purpose:</strong></td>
+		<td>
+		
+			
+		 
+			
+				Apply for, replace or renew a driver license, identification card or instruction permit.
+				<span class="warning">Written exams will NOT be administered after 4:30 PM.</span>
+			
+		 </td>
+	</tr>
+	<tr>
+		<td valign="top" width="120"><strong>Name(s):</strong></td>
+		<td>
+		
+		 GLEB KOLYAGIN  
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" width="120"><strong>Telephone #:</strong></td>
+		<td>(773) 916 - 9361</td>
+	</tr>
+	<tr>
+</tr></tbody></table>
+<table>
+	<tbody><tr valign="top">
+		<td><a href="https://www.dmv.ca.gov/foa/welcome.do" id="foaHomeBtn" name="foaHomeBtn" style=""></a> <input name="" class="buttons_3" value="Appointment System Home Page" onclick="window.location=document.getElementById('foaHomeBtn').href;return true;" type="button">
+		</td>
+		<td><a href="https://www.dmv.ca.gov/portal/home/dmv.htm" id="finishedBtn" name="finishedBtn" style=""></a> <input name="" class="buttons_3" value="Finished" onclick="window.location=document.getElementById('finishedBtn').href;return true;" type="button">
+		</td>
+	</tr>
+</tbody></table>
+<p><strong>What should I bring?</strong></p>
+<ul>
+	
+		<li><a href="javascript:openit%20('/online/appt/apptdl.htm')">List of materials and additional information for Driver License/Identification Card</a></li>
+	
+	
+</ul>
+
+<p>If you require further assistance, please call <strong>1-800-777-0133</strong> during normal <a href="javascript:openit%20('http://apps.dmv.ca.gov/fo/offices/toc_fo.htm')">business hours</a>.</p></div>
+		
+		
+			<!-- Left Column Content Body - END -->
+			<div class="cleaner">&nbsp;</div>
+		</div>
+		
+		<div class="content_right_column" style="vertical-align: top;">
+			<!-- Right Column Content Body - BEGIN -->
+
+			<!-- Login -->
+			<div class="block_with_rounded_corners" style="margin-top: 10px;">
+				<span class="bottom_right"></span>
+				<span class="bottom_left"></span>
+				<span class="top_right"></span>
+				<span class="top_left"></span>
+
+
+
+
+	<h3 style="font-family: Arial, Helvetica, sans-serif; font-size:1.4em; font-weight:bold; background-image: none; background-repeat: no-repeat; margin: 0 0 0 0; text-indent: 0;">Identity Management Portal</h3>
+
+	<div style="margin-left:20px;">
+	
+	
+	
+
+
+	
+	        
+	         
+	  			
+			    
+			    	<p style="font-weight:bold; font-size:1.2em;">
+			            LOGIN/REGISTER
+			         </p>
+			    
+			 
+			 <ul style="margin-top: -10px; margin-left: -20px;">
+	            <a href="http://www.dmv.ca.gov/SSOServlet" class="w_arrow">Login Here</a>
+	         	<div style="font-size: 0.001em; height: 3px;"><br></div>
+	            <a href="http://www.dmv.ca.gov/SelfHelp/Registration.jsp" class="w_arrow">Register Here</a>
+	         </ul>
+	 
+    
+ 
+</div>
+<br>
+	<div class="cleaner"></div>
+</div>				
+
+
+<div class="block_with_rounded_corners" style="margin-top: -5px; z-index: 1px;">
+<div style="background-color: #5D7493;height: 2px;margin: 0px 0px 0px 0px;z-index: 10;"><span style="font-size: 0.0005em;">&nbsp;</span></div>
+				<span class="bottom_right"></span>
+				<span class="bottom_left"></span>
+
+	<div style="margin-left:15px;margin-top: 10px;">
+
+
+	
+	
+		<!-- start of webapp_leftside -->
+<div id="app_nav">
+	<p><a href="https://www.dmv.ca.gov/portal/home/dmv.htm">DMV Homepage</a></p>
+	<h2>Types of Services:</h2>
+	<ul class="list_decorative_dark">
+		<li><a href="https://www.dmv.ca.gov/online/appt/apptdl.htm">Driver License</a></li>
+		<li><a href="https://www.dmv.ca.gov/online/appt/apptdl.htm">Identification Card</a></li>
+		<li><a href="https://www.dmv.ca.gov/online/appt/apptvr.htm">Vehicle Registration</a></li>
+		<li><a href="https://www.dmv.ca.gov/online/appt/apptdrivtest.htm">Driving Tests</a></li>
+	</ul>
+	<h2>Additional Info:</h2>
+	<ul class="list_decorative_dark">
+		<li><a href="https://www.dmv.ca.gov/online/appt/apptfaq.htm">FAQs</a></li>
+		<li><a href="https://www.dmv.ca.gov/online/appt/privacy.htm">Privacy/Security</a></li>
+	</ul>
+	<div id="security_logo">
+		<a href="http://www.cio.ca.gov/OIS/Government/privacy/documents/pdf/secure_computing.pdf">
+		<img src="confirmOfficeVisit.do_files/secure_computing1.jpg" alt="Security Awareness" align="middle" height="97" width="100">
+		<br>Security Awareness (PDF)</a>
+		</div>
+	<div id="logo"><a href="https://www.dmv.ca.gov/portal/home/dmv.htm"><img src="confirmOfficeVisit.do_files/dmvlogo_round.gif" alt="DMV Logo" height="145" width="145"></a>
+		</div>
+</div><!-- app_nav -->
+<!-- end of webapp_leftside -->
+
+	
+ 
+		
+		
+
+<br>
+</div>
+	<div class="cleaner"></div>
+</div>				
+
+				<!-- Recursive Portlet Content Area - END -->
+
+
+			<!-- Right Column Content Body - END -->
+			<div class="cleaner">&nbsp;</div>
+		</div>
+
+		
+		
+
+
+		<div class="cleaner">&nbsp;</div>
+	</div><!-- closes add-padding div -->
+			
+			
+	<div class="cleaner">&nbsp;</div>
+</div><!-- closes main_content div -->
+
+
+	
+	
+		<!-- webapp/footer_en.html -->
+	<div id="footer_1a">
+		<div id="footer_1b">
+			<div class="footer_links">
+
+<a name="footer">&nbsp;</a>
+
+	<div>
+	<a href="https://www.dmv.ca.gov/portal/home/dmv.htm">Home</a>  | 
+	<a href="https://www.dmv.ca.gov/top_nav/tech_help.htm">Help</a> | 
+	<a href="https://www.dmv.ca.gov/dl/disabled_info.htm">Disability Services</a> | 
+	<a href="https://www.dmv.ca.gov/sitemap/sitemap.htm">Site Map</a> | 
+	<a href="http://apps.dmv.ca.gov/dmvfeedback.htm">Technical Support</a>
+	</div>
+
+</div>
+
+			<div class="cleaner"></div>
+		</div>
+	</div>
+</div>
+
+<div id="footer_2">
+	<div>
+		<p>
+	  	<a href="#">Back to Top</a> | <a href="https://www.dmv.ca.gov/portal/portal/conditions.htm">Conditions of Use</a> | <a href="https://www.dmv.ca.gov/portal/portal/policy.htm">Privacy Policy</a> |
+  		<a href="https://www.dmv.ca.gov/top_nav/accessibility.htm">Accessibility</a> | <a href="http://www.ca.gov/">CA.Gov</a><br><br>
+		Copyright © 2011 State of California
+		
+ 		<br><br>
+		
+	 	<a href="http://get.adobe.com/reader/otherversions/">Adobe Acrobat Reader</a> enables you to view and print PDF files.<br> To incorporate the latest accessibility features download of the latest version of Acrobat Reader may be required.
+		</p>
+</div>
+</div>
+<!-- webapp/footer_en.html -->
+
+	
+
+<div style="padding: 0px; overflow: hidden; visibility: hidden; position: absolute; width: 1279px; left: -1280px; top: 0px; z-index: 1010;" id="WzTtDiV"></div>
+
+
+</body></html>

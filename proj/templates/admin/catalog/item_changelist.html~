@@ -1,0 +1,297 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% load url from future %}
+
+
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+  {% if cl.formset %}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
+  {% endif %}
+  {% if cl.formset or action_form %}
+    {% url 'admin:jsi18n' as jsi18nurl %}
+    <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
+  {% endif %}
+  {{ media.css }}
+  {% if not actions_on_top and not actions_on_bottom %}
+    <style>
+      #changelist table thead th:first-child {width: inherit}
+    </style>
+  {% endif %}
+{% endblock %}
+
+
+
+{% block extrahead %}
+{{ block.super }}
+
+{{ media.js }}
+
+
+
+  <script type="text/javascript" src="/admin/jsi18n/"></script>
+  
+<script type="text/javascript" src="/media//admin_media/js/core.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/jquery.min.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/jquery.init.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/actions.min.js"></script>
+
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+
+{% dajaxice_js_import %}
+
+{% if action_form %}{% if actions_on_top or actions_on_bottom %}
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+{% endif %}{% endif %}
+{% endblock %}
+
+{% block bodyclass %}change-list{% endblock %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="../../">
+        {% trans "Home" %}
+      </a>
+       &rsaquo;
+       <a href="../">
+         Catalog
+      </a>
+      &rsaquo;
+		Items
+     </div>
+  {% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+
+
+
+
+        
+<div onclick="Dajaxice.proj.catalog.myexample(my_js_callback);">Click Here!</div>        
+<h1>Select Item to change</h1>
+
+  <div id="content-main">
+      
+    {% block object-tools %}
+      {% if has_add_permission %}
+        <ul class="object-tools">
+          {% block object-tools-items %}
+            <li>
+              <a href="add/{% if selected_category%}?category={{ selected_category.id }}{% endif %}" class="addlink">
+                {% blocktrans with cl.opts.verbose_name as name %}Add Item{% endblocktrans %}
+              </a>
+            </li>
+          {% endblock %}
+        </ul>
+      {% endif %}
+    {% endblock %}
+    
+    
+    <div class="module" id="changelist">
+	
+    
+   
+<div id="toolbar"><form id="changelist-search" action="" method="get">
+
+<div><!-- DIV needed for valid HTML -->
+<label for="searchbar"><img src="/media/admin_media/img/admin/icon_searchbox.png" alt="Search" /></label>
+<input type="text" size="40" name="q" value="{{ query_search }}" id="searchbar" />
+{% if selected_brand %}<input type="hidden" value="{{ selected_brand.id }}" name="brand" />{% endif %} 
+{% if selected_category %}<input type="hidden" value="{{ selected_category.id }}" name="category" />{% endif %} 
+<input type="submit" value="Search" />
+{% if query_search %}
+&nbsp;&nbsp;<input type="submit" value="Clear" onClick="document.getElementById('searchbar').value='';">
+{% endif %}
+
+
+</div>
+</form></div>
+<script type="text/javascript">document.getElementById("searchbar").focus();</script>
+
+
+    
+    	
+	
+		  {% block filters %}
+	<div style="position: absolute; right: -1px; top:30px">
+       
+       
+       
+       
+      {% if brands %}
+         <div id="changelist-filter" style="position: relative; top:0px;">
+				<h2>Filter by Brand</h2>
+				<ul>
+                    <li {% if not selected_brand.id %}class="selected"{% endif %}><a href="/admin/catalog/item/{{ url_brand }}">All</a></li>
+					{% for brand in brands %}
+					<li{% ifequal brand.id selected_brand.id %} class="selected"{% endifequal %}>
+					<a href="{{ url_brand }}brand={{ brand.id }}">{{ brand.name }}</a></li>
+					{% endfor %}
+				</ul>
+          </div>
+      {% endif %}
+             
+       <br/>
+        {% if child_categories %}
+         
+          <div id="changelist-filter" style="position: relative">
+				<h2>By Subcategory</h2>
+				<ul>
+					{% for category in child_categories %}
+					<li{% ifequal category.id selected_child_cat.id %} class="selected"{% endifequal %}>
+					<a href="{{ url_category }}category={{ category.id }}">{{ category.name }}</a></li>
+					{% endfor %}
+				</ul>
+          </div>
+        {% endif %}
+        
+        {% if parent_categories %}
+          <div id="changelist-filter" style="position: relative; ">
+			<h2>Filter by category</h2>
+				<ul>
+					<li {% if not selected_parent_cat.id %}class="selected"{% endif %}><a href="/admin/catalog/item/{{ url_category }}">All</a></li>
+					{% for category in parent_categories %}
+					<li{% ifequal category.id selected_parent_cat.id  %} class="selected"{% endifequal %}>
+					<a href="{{ url_category }}category={{ category.id }}">{{ category.name }}</a></li>
+					{% endfor %}
+				</ul>
+          </div>
+         {% endif %}
+        
+        
+        
+        </div>
+         
+      {% endblock %}
+      
+		
+    <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        {% csrf_token %}
+
+
+ <div class="actions">
+    <label>Action: </label><select name="action">
+    <option value="" selected="selected">---------</option>
+    <option value="delete_selected">Delete selected Items</option>
+    </select>
+    </label>
+    <input type="hidden" class="select-across" value="0" name="select_across" />
+    <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
+    
+    <script type="text/javascript">var _actions_icnt="{{ items.object_list.count }}";</script>
+    <span class="action-counter">0 of {{ items.object_list.count }} selected</span>
+        
+</div>
+
+
+
+      {% block result_list %}
+			<div class="results" style="position: absolute; width: 87%;">
+				<table cellspacing="0"  id="result_list">
+				<thead>
+					<tr>
+						<th scope="col" class="action-checkbox-column" style="width: 40px">
+							<input type="checkbox" id="action-toggle" />
+						</th>
+						<th scope="col" colspan="2">
+							
+								Item
+							
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in items.object_list %}
+					
+						<tr class="{% cycle 'row1' 'row2' %}">
+						
+						<td class="action-checkbox" style="width: 40px">
+							<input type="checkbox" class="action-select" value="{{ item.id }}" name="_selected_action" /></td>
+						<th width="40%"><a href="{{ item.id }}/">{{ item.name }}</a></th>
+						<td align="left"><a href="{{ url_category }}category={{ item.category.id }}" />{{ item.category.name }}</a></td>
+
+						
+						</tr>
+					{% endfor %}
+				</tbody>
+				</table>
+                <p class="paginator">
+                 
+                Items: {{ items.object_list.count }}
+                <br/>
+                       {% if items.paginator.num_pages > 1 %}
+                        <!-- pages_list -->
+                   
+
+                        {% if items.has_previous %}
+                            
+                        <a href="/admin/catalog/item/{{ url_page }}page=1" class="page first" title="First page">First</a>
+                        <a href="/admin/catalog/item/{{ url_page }}page={{ items.previous_page_number }}" class="page prev" title="Previous">Previous</a>
+                        {% endif %}
+                        
+                        {% for cur_page in page_list %}
+                                {% if not is_all_items %}
+                                    {% ifequal items.number cur_page.name %}
+                                        <span class="page current">
+                                            {{ cur_page.name }}
+                                        </span>
+                                    {% else  %}
+                                        <a href="/admin/catalog/item/{{ url_page }}page={{ cur_page.href }}" class="page" title="Page {{ cur_page.name }}">{{ cur_page.name }}</a>
+                                    {% endifequal %}
+                                {% else %}
+                                    <a href="/admin/catalog/item/{{ url_page }}page={{ cur_page.href }}" class="page" title="Page {{ cur_page.name }}">{{ cur_page.name }}</a>
+                                {% endif %}
+                        {% endfor %}
+                        
+                
+                        
+                         {% if items.has_next %}
+       
+                        <a href="/admin/catalog/item/{{ url_page }}page={{ items.next_page_number }}" class="page next" title="Next">Next</a>
+                        <a href="/admin/catalog/item/{{ url_page }}page={{ items.paginator.num_pages }}" class="page last" title="Last">Last</a>
+                        {% endif %}
+                       
+                       
+                    
+                    {% if is_all_items %}
+                            <span class="page current">
+                              &nbsp;&nbsp;{% trans 'Show all' %}
+                            </span>
+                    {% else %}
+                        &nbsp;&nbsp;<a href="/admin/catalog/item/{{ url_page }}page=0" class="showall">{% trans 'Show all' %}</a>
+                    {% endif %}
+                    
+                    
+                    {% endif %} 
+                    
+                </p>
+			</div>
+
+       {% endblock %}
+ 
+      </form>
+      </div>
+      
+  
+</div>
+{% endblock %}
+

@@ -1,0 +1,50 @@
+from django.conf.urls.defaults import patterns, include, url
+from django.contrib import admin
+from django.conf.urls.static import static
+from proj import settings
+from proj.catalog.admin import item_admin_changelist
+#from proj.catalog import urls as catalog_urls
+
+# Uncomment the next two lines to enable the admin:
+
+from dajaxice.core import dajaxice_autodiscover
+
+dajaxice_autodiscover()
+
+admin.autodiscover()
+
+
+
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'proj.views.home', name='home'),s
+    # url(r'^proj/', include('proj.foo.urls')),`
+
+    # Uncomment the admin/doc line below to enable admin documentation:
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    # Uncomment the next line to enable the admin:
+    
+#    (r'^$', main_page),
+#    (r'^add/$', add_article),
+#    (r'^edit/([\d]+)/$', edit_article),
+#    (r'^delete/([\d]+)/$', delete_article),
+#	(r'^login/$',mylogin),
+#	(r'^logout/$', mylogout),
+#   (r'^reg/$', reg),
+	url(r'^admin/catalog/item/$', item_admin_changelist),
+	url(r'^admin/catalog/item/\?', item_admin_changelist),
+    (r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')),
+    (r'^admin/', include(admin.site.urls)),
+    url(r'^admin_tools/', include('admin_tools.urls')),
+    url(r'^catalog/', include('catalog.urls')), 
+	#url(r'^admin/', include(admin.site.urls)),
+	#	(r'^([\w\d]+)/$', get_article),
+	
+	
+    
+)+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+

@@ -1,0 +1,43 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+{{ block.super }}
+
+<script type="text/javascript" src="/media/js/jquery-1.7.min.js"></script>
+
+{% endblock %}
+
+{% block after_field_sets %}
+
+    {{ block.super }}
+
+
+
+<!-- autocomplete for selects with specification-->
+
+<script type="text/javascript" src="/media/jquerui/js/jquery-ui-1.8.17.custom.min.js" ></script>
+<script type="text/javascript" src="/media/js/ui_widgets.js" ></script>
+<link rel="stylesheet" href="/media/jquerui/css/cupertino/jquery-ui-1.8.17.custom.css" type="text/css" media="screen, projection"/>
+	<style>
+	.ui-button-icon-only .ui-button-text { padding: 0; margin: 0; margin-top:2px; margin-bottom:-2px;} 
+	.ui-autocomplete-input { margin: 0; margin-bottom: 5px; width:200px; }
+    .ui-menu-item { list-style-type: none;}
+   
+    </style>
+
+
+
+
+<script type="text/javascript">
+    
+$(function() { 
+    		$( "#id_user" ).combobox();
+	}
+);       
+
+    
+</script>
+<!--autocomplete end-->
+
+
+{% endblock %}

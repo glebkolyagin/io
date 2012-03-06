@@ -1,0 +1,61 @@
+{% extends "admin/change_form.html" %}
+{% load dajaxice_templatetags %}
+
+
+{% block extrahead %}
+{{ block.super }}
+
+<script src="/media/js/jquery-1.7.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+{% dajaxice_js_import %}
+
+
+
+
+{% endblock %}
+
+
+
+{% block after_field_sets %}
+
+<script type="text/javascript">
+
+
+
+    function refill_address(data) {
+    
+          $('#id_address option').remove();
+
+          for(var i=0;i<data.addresses.length;i++) {
+             $('#id_address').append('<option value="'+data.addresses[i][0]+'">'+data.addresses[i][1]+'</option>');
+          }
+      
+    }
+
+
+
+    $('#id_user').change( function () {
+           var id=$('#id_user option:selected').attr('value');
+           if(id!='') {
+                Dajaxice.proj.comm.addresses_by_user(refill_address, {'id': id});
+           }
+           
+    }
+    );
+
+</script> 
+
+       
+
+{% endblock %}

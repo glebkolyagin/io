@@ -1,0 +1,21 @@
+{% for c in cats %}
+    {% if selected_cat == c or selected_cat in c.children %}
+        <strong>{{ c.name }}</strong>
+        <br/>
+        {% for ch in c.children %}
+            {% if ch == selected_cat %} 
+                <strong>{{ ch.name }}</strong>
+            {% else %}
+                {{ ch.name }}
+            {% endif %}
+        <br/>
+        {% endfor %}
+    {% else %}
+        {{ c.name }}
+    {% endif %}
+<br/>
+{% endfor %}
+
+
+
+

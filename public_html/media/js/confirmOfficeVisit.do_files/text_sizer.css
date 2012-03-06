@@ -1,0 +1,92 @@
+/*---------------------------------------------*/
+/*  ca_portal.css                              */
+/*  fixed image 6/26/2010 6:09:40 PM           */
+/*                                             */
+/* Department-specific styles - CA Gov website */
+/*---------------------------------------------*/
+
+/*--------------------------------------------------------*/
+/*  photo_slide                                           */
+/*  Photo Slide with thumbnail and links to photo contest */
+/*--------------------------------------------------------*/
+
+.photo_slide { /* float:right; position:relative; */
+ text-align:center;
+ margin:16px 0 8px 0;
+ padding:12px 0 12px 0;
+ width:166px;
+ background: url(../images/dmv_department/photo_slide_background.gif) repeat-y;
+ 
+ border-right:8px solid #ECECE7;
+ border-left:8px solid #ECECE7;
+}
+
+.photo_slide img {
+ padding-top:6px;
+}
+.photo_slide a:hover {
+ background:#fff;
+}
+
+#middle_column .photo_slide ul {
+ text-align:left;
+ margin-bottom:2px;
+}
+
+#middle_column .photo_slide li {
+ margin-bottom:0px;
+}
+
+.photo_slide .slide_top { /* For the top position:absolute; */
+ 
+ width:166px;
+ height:12px;
+ font-size:1px;
+ top:0px;
+ left:0px;
+ background: url(../images/dmv_department/photo_slide_top.gif) top left no-repeat;
+}
+
+.photo_slide .slide_bottom { /* For the bottom position:absolute; */
+ 
+ width:166px;
+ height:12px;
+ font-size:1px;
+ bottom:0px;
+ left:0px;
+ background: url(../images/dmv_department/photo_slide_bottom.gif) top left no-repeat;
+}
+
+
+/*--------------------------------------------------*/
+/*  photo_contest                                   */
+/*  Photo Contest thumbnails section of the Portal  */
+/*--------------------------------------------------*/
+
+.photo_contest div {
+ width:29%;
+ float: left;
+ text-align:center;
+ padding:10px 8px 12px 0;
+}
+
+.photo_contest div.cleaner {
+ float:none;
+}
+
+.photo_contest img {
+ vertical-align:middle;
+}
+
+.photo_contest span {
+ display:block;
+ line-height:175px;
+ min-height:175px;
+ height:auto !important; /* For Firefox only */
+ height:175px; /* For IE only */
+}
+
+.photo_contest p {
+ text-align:center;
+}
+

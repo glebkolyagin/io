@@ -1,0 +1,60 @@
+{% extends "admin/change_form.html" %}
+{% load dajaxice_templatetags %}
+
+
+{% block extrahead %}
+{{ block.super }}
+
+
+    
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+  
+<script type="text/javascript" src="/media//admin_media/js/core.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/jquery.min.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/jquery.init.js"></script>
+<script type="text/javascript" src="/media//admin_media/js/actions.min.js"></script>
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+{% dajaxice_js_import %}
+
+
+
+
+{% endblock %}
+
+
+
+{% block after_field_sets %}
+
+<script type="text/javascript">
+
+
+
+    function refill_address(data) {
+    
+          $('#id_address option').remove();
+
+          for(var i=0;i<data.addresses.length;i++) {
+             $('#id_address').append('<option value="'+data.addresses[i][0]+'">'+data.addresses[i][1]+'</option>');
+          }
+      
+    }
+
+
+
+    $('#id_user').change( function () {
+           var id=$('#id_user option:selected').attr('value');
+           if(id!='') {
+                Dajaxice.proj.comm.addresses_by_user(refill_address, {'id': id});
+           }
+           
+    }
+    );
+
+</script> 
+
+       
+
+{% endblock %}

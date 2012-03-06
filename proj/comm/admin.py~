@@ -1,0 +1,22 @@
+from django.contrib import admin
+from comm.models import Order, Basket, OrderSpecification, BasketSpecification
+
+
+
+
+class OrderSpecificationInline(admin.TabularInline):
+    model = OrderSpecification
+    fk_name = "item"
+
+
+class OrderAdmin(admin.ModelAdmin):
+    inlines = [
+        OrderSpecificationInline,
+    ]
+    
+       
+admin.site.register(Order, OrderAdmin)
+admin.site.register(Basket)
+
+admin.site.register(OrderSpecification)
+admin.site.register(BasketSpecification)

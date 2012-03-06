@@ -1,0 +1,97 @@
+#-- encoding=utf8 --
+from django.db import models
+from django.contrib.auth.models import User
+
+
+from django.db.models.signals import post_save
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+post_save.connect(create_user_profile, sender=User)
+
+
+class UserProfile(models.Model):
+    user=models.OneToOneField(User)
+    first_name_rus=models.CharField(max_length=255, verbose_name=u'Имя', blank=True)
+    last_name_rus=models.CharField(max_length=255, verbose_name=u'Фамилия', blank=True)
+    
+    def __unicode__(self):
+        return self.user.first_name+" "+self.user.last_name + " (" + self.user.username + ")"
+        
+    class Meta:
+        verbose_name=u'User profile'
+        verbose_name_plural=u'User profiles'
+
+
+class Country(models.Model):
+    name=models.CharField(max_length=255, verbose_name=u'Country')
+    name_rus=models.CharField(max_length=255, verbose_name=u'Страна')
+  
+    def __unicode__(self):
+        return self.name
+        
+    class Meta:
+        verbose_name=u'Country'
+        verbose_name_plural=u'Countries'
+        
+class State(models.Model):
+    name=models.CharField(max_length=255, verbose_name=u'State')
+    abbr=models.CharField(max_length=2, verbose_name='Abbreviation', blank=True)
+    country=models.ForeignKey(Country, verbose_name=u'Country')
+
+    def __unicode__(self):
+        return self.name
+        
+    class Meta:
+        verbose_name=u'State'
+        verbose_name_plural=u'States'
+    
+
+def states():
+    from django.db import connection, transaction
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT id,name from accounts_state order by name asc")
+    return cursor.fetchall()
+    
+def countries(lang=''):
+    from django.db import connection, transaction
+    cursor = connection.cursor()
+
+    if(lang!=''): lang="_"+lang
+    cursor.execute("SELECT id,name%s from accounts_country order by name asc" % (lang,))
+    return cursor.fetchall()
+    
+
+
+
+class Address(models.Model):
+    name=models.CharField(max_length=500, verbose_name=u'First and Last name', blank=True)
+    name_rus=models.CharField(max_length=500, verbose_name=u'Имя и Фамилия', blank=True)
+    addr1=models.CharField(max_length=500, verbose_name=u'Address Line 1', blank=True)
+    addr1_rus=models.CharField(max_length=500, verbose_name=u'Улица, дом, квартира', blank=True)
+    addr2=models.CharField(max_length=500, verbose_name=u'Address Line 2', blank=True)
+    addr2_rus=models.CharField(max_length=500, verbose_name=u'Регион', blank=True)
+    city=models.CharField(max_length=500, verbose_name=u'City', blank=True)
+    city_rus=models.CharField(max_length=500, verbose_name=u'Город', blank=True)
+    state=models.CharField(max_length=500, verbose_name=u'State', blank=True, choices=states())
+    country=models.CharField(max_length=500, verbose_name=u'Country', choices=countries())
+    country_rus=models.CharField(max_length=500, verbose_name=u'Страна', choices=countries('rus'))
+    zip_code=models.CharField(max_length=20, verbose_name=u'Zip')
+    user=models.ForeignKey(User, verbose_name=u'User')
+    phone=models.TextField(max_length=20, verbose_name=u'Phone number', blank=True)
+    primary=models.BooleanField(verbose_name=u'Primary address')
+
+
+    def __unicode__(self):
+        return self.name + ", "+ self.addr1 +", "+ self.city +", " + self.country + ", " + self.zip_code
+        
+    class Meta:
+        verbose_name=u'Address'
+        verbose_name_plural=u'Addresses'
+
+
+    
